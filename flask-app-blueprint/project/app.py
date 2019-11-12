@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import os
 from flask import Flask
 from .apps import blueprints
 
@@ -12,7 +13,9 @@ def create_app(app_name=__name__, cli=False, testing=False):
 
 
 def configure_app(app, testing=False):
-    pass
+    config_env = os.getenv('APP_ENV', 'develop')
+    print(f'Using configuration for: {config_env} environment.')
+    app.config.from_object(f"project.settings.{config_env}")
 
 
 def configure_blueprints(app):
