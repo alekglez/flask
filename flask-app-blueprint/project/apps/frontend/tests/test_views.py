@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from apps.core.commons.mixins import CreateApplicationTest
+from apps.core.mixins import CreateApplicationTest
 
 
 class AppFrontEndTestCases(CreateApplicationTest):
