@@ -55,3 +55,35 @@ TOTAL                                          31      5      2      0    85%
 ```
 $ python manage.py run
 ```
+
+#### Docker
+
+##### Build the Docker image
+```
+$ docker-compose up --build --no-recreate
+
+After that, you can go to http://localhost:5000, you will 
+see the application up and running.
+
+Then you can list yours images...
+$ docker images
+
+REPOSITORY               TAG                 IMAGE ID            CREATED              SIZE
+alekcoraglez/flask-app   latest              4ec5ff0efbdd        About a minute ago   240MB
+python                   3.7-alpine          b11d2a09763f        3 weeks ago          98.8MB
+
+Or yours containers...
+$ docker ps -a
+
+CONTAINER ID        IMAGE                           COMMAND                  CREATED             STATUS                        PORTS               NAMES
+a132410e3648        alekcoraglez/flask-app:latest   "flask run --host=0.…"   55 seconds ago      Exited (137) 36 seconds ago                       flask-app
+```
+
+##### Push the Docker image to the register
+```
+First, you need to be autenticated in DockerHub...
+$ docker login
+
+Then...
+$ docker push
+```
