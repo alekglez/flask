@@ -65,6 +65,38 @@ TOTAL                                          31      5      2      0    85%
 
 ###### Also a folder called: "htmlcov" was created and you can open the index.html file in your browser and see the code lines that our test are covering...
 
+##### Load and stress test using Locust
+Locust is an easy-to-use, distributed, user load testing tool. It is intended for load-testing web sites (or other systems) and figuring out how many concurrent users a system can handle.
+https://docs.locust.io/en/stable/writing-a-locustfile.html
+```
+$ locust --port 8090
+```
+
+The idea is that during a test, a swarm of locusts will attack your website. The behavior of each locust (or test user if you will) is defined by you and the swarming process is monitored from a web UI in real-time. This will help you battle test and identify bottlenecks in your code before letting real users in.
+
+![LOCUST](assets/locus/locus1.png)
+
+You can see statistics, charts, failures, exceptions...
+
+![LOCUST](assets/locus/locus2.png)
+
+```
+Console results...
+
+ Name                             # reqs      # fails     Avg     Min     Max  |  Median   req/s failures/s
+-----------------------------------------------------------------------------------------------------------------------
+ GET /products/                   14146     0(0.00%)      14       5     101  |      13  345.56    0.00
+-----------------------------------------------------------------------------------------------------------------------
+ Aggregated                       14146     0(0.00%)      14       5     101  |      13  345.56    0.00
+
+Percentage of the requests completed within given times
+ Name                             # reqs    50%    66%    75%    80%    90%    95%    98%    99%  99.9% 99.99%   100%
+-----------------------------------------------------------------------------------------------------------------------
+ GET /products/                   14146     13     14     15     16     18     20     24     29     40     65    100
+-----------------------------------------------------------------------------------------------------------------------
+ Aggregated                       14146     13     14     15     16     18     20     24     29     40     65    100
+```
+
 ##### Execute the application...
 ```
 $ python manage.py run
