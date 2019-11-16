@@ -8,6 +8,7 @@ import coverage
 
 from flask.cli import FlaskGroup
 from project.app import create_app
+from project.extensions import db
 
 
 def run():
@@ -18,6 +19,15 @@ def run():
 def cli():
     """ App main entry point. """
     pass
+
+
+@cli.command('init_db')
+def init_db():
+    """ Initialize the database """
+
+    click.echo('Creating database...')
+    db.create_all()
+    click.echo('Database was created...')
 
 
 @cli.command('test')

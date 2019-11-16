@@ -1,3 +1,8 @@
-from .frontend import frontend
+# -*- coding: utf-8 -*-
 
-blueprints = [frontend]
+from .core.interfaces import core
+from .frontend.views import frontend
+from .products.interfaces import products
+
+
+blueprints = [core, frontend, products]
