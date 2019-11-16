@@ -2,7 +2,7 @@ version: "3.5"
 
 services:
   flask-app:
-    image: alekcoraglez/flask-app:latest
+    image: gcr.io/gcp-platform-test-x/flask-app:latest
     container_name: flask-app
     restart: always
 
@@ -17,6 +17,39 @@ services:
 
     environment:
       - FLASK_APP=/flask-app/manage.py
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
 
     ports:
       - 5000:5000
+
+    networks:
+      - flask_app_network
+
+    depends_on:
+      - postgres
+
+
+  postgres:
+    container_name: postgres
+    image: postgres:12
+    restart: always
+
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=flask_project
+
+    volumes:
+      - ./docker/volumes/db:/var/lib/postgresql/data
+
+    ports:
+      - 5435:5432
+
+    networks:
+      - flask_app_network
+
+
+networks:
+  flask_app_network:
+    driver: bridge
