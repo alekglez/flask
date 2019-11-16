@@ -3,4 +3,3 @@ coverage==4.5.4
 PyJWT==1.7.1
 Flask-SQLAlchemy==2.4.1
 psycopg2-binary==2.8.4
-locustio==0.13.1
