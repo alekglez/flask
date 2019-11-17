@@ -106,7 +106,7 @@ $ python manage.py run
 
 ##### Build the Docker image
 ```
-$ docker-compose up --build --no-recreate
+$ sudo docker-compose up --build --no-recreate
 
 After that, you can go to http://localhost:5000, you will 
 see the application up and running.
@@ -130,7 +130,7 @@ First, you need to be autenticated in DockerHub...
 $ docker login
 
 Then...
-$ docker push
+docker push 
 ```
 
 #### Google Cloud Platform
@@ -150,15 +150,19 @@ For this case: sudo docker build -t gcr.io/gcp-platform-test-x/flask-app .
 ##### Login to GCP
 ```
 $ gcloud auth login
-$ gcloud auth configure-docker
+```
 
-Also will be useful export:
-export GOOGLE_APPLICATION_CREDENTIALS="/home/alejandro/.gcp/gcp_platform_key.json"
+##### Enable the Container Registry API.
+https://cloud.google.com/container-registry/docs/quickstart
+
+##### Configure docker to use the gcloud command-line tool as a credential helper
+```
+$ gcloud auth configure-docker
 ```
 
 ##### Push the image to Google Container Registry
 ```
-$ sudo docker push gcr.io/gcp-platform-test-x/flask-app
+$ docker push gcr.io/gcp-platform-test-x/flask-app
 ```
 
 ##### Deploying the containerized web application...
@@ -195,11 +199,28 @@ To see the Pod created by the Deployment, run the following command:
 ```
 $ kubectl get pods
 
-NAME READY STATUS RESTARTS AGE
-da-academy-dc4f485c5-ktv82 0/1 CrashLoopBackOff 5 3m51s
+NAME                           READY   STATUS              RESTARTS   AGE
+gcp-cluster-66d67f565b-nv6pd   0/1     ContainerCreating   0          12s
 ```
 
-#### Delete your cluster
+##### Expose the application
+```
+$ kubectl expose deployment gcp-cluster --type=LoadBalancer --port 80 --target-port 8080
+```
+
+```
+$ kubectl get service
+
+NAME          TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+gcp-cluster   LoadBalancer   10.23.252.31   35.247.59.8   80:30793/TCP   70s
+```
+
+#### Scale up your application
+```
+$ kubectl scale deployment gcp-cluster --replicas=3
+```
+
+##### Delete your cluster
 ```
 $ gcloud container clusters delete gcp-cluster
 ```

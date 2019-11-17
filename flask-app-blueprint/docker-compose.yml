@@ -2,6 +2,8 @@ version: "3.5"
 
 services:
   flask-app:
+    # You can use other name for example:
+    # image: alekcoraglez/flask-app:latest
     image: gcr.io/gcp-platform-test-x/flask-app:latest
     container_name: flask-app
     restart: always
