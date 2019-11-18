@@ -6,10 +6,10 @@ RUN apk update && \
     apk add postgresql-dev && \
     rm -rf /var/cache/apk/*
 
-#ADD . /flask-app
-#WORKDIR /flask-app
-#RUN pip install -r requirements/base.txt
-#ENTRYPOINT ["./entrypoint.sh"]
+# ADD . /flask-app
+# WORKDIR /flask-app
+# RUN pip install -r requirements/base.txt
+# ENTRYPOINT ["./entrypoint.sh"]
 
 ENV APP_PATH=/home/flask-app
 RUN mkdir $APP_PATH
@@ -21,9 +21,6 @@ WORKDIR $APP_PATH
 RUN git clone --branch develop https://github.com/alekglez/flask.git $APP_PATH
 RUN pip install -r $APP_PATH/flask-app-blueprint/requirements/base.txt
 CMD chmod +x $APP_PATH/flask-app-blueprint/entrypoint.sh
-
-#COPY ~/flask-app/flask-app-blueprint/entrypoint.sh /usr/local/bin/
-#RUN ln -s /usr/local/bin/entrypoint.sh
 
 USER flask
 ENTRYPOINT ["/home/flask-app/flask-app-blueprint/entrypoint.sh"]
