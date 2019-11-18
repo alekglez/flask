@@ -1,0 +1,178 @@
+# Product API specifications.
+# https://editor.swagger.io/ to load.
+openapi: '3.0.0'
+
+info:
+  title: Products
+  description: Product API specification
+  version: 1.0.0
+
+paths:
+  /products/:
+    get:
+      summary: Return all items
+      responses:
+        '200':
+          description: Return all items
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {
+                    "1": {
+                        "id": 1,
+                        "name": "Product 1",
+                        "price": 5000,
+                        "supplier": "some-supplier",
+                        "category": "IT"
+                    }
+                }
+
+        '204':
+          description: Not content
+
+    post:
+      summary: Create new product
+      parameters:
+      - name: "body"
+        required: true
+        in: query
+        schema:
+          type: object
+          example: {
+              "id": 1,
+              "name": "Product 1",
+              "price": 5,
+              "supplier": "some-supplier",
+              "category": "IT"
+          }
+
+      responses:
+        '201':
+          description: Item saved
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Return the item created
+                example: {
+                      "id": 1,
+                      "name": "Product 1",
+                      "price": 5,
+                      "supplier": "some-supplier",
+                      "category": "IT"
+                  }
+
+        '400':
+          description: Bad information provided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: some error
+
+        '409':
+          description: The resource already exist
+
+  /products/{product_id}:
+    get:
+      summary: Return product information
+      parameters:
+      - name: "product_id"
+        schema:
+          type: integer
+        in: "path"
+        required: true
+
+      responses:
+        '200':
+          description: Return information of the product
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {
+                    "id": 1,
+                    "name": "Product 1",
+                    "price": 5,
+                    "supplier": "some-supplier",
+                    "category": "IT"
+                }
+
+        '204':
+          description: Not content
+
+    put:
+      summary: Update a product
+      parameters:
+      - name: "product_id"
+        schema:
+          type: integer
+        in: "path"
+        required: true
+      - name: "body"
+        required: true
+        in: query
+        schema:
+          type: object
+          example: {
+              "name": "New name"
+          }
+
+      responses:
+        '200':
+          description: Product updated
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Return the item updated
+                example: {
+                    "id": 1,
+                    "name": "Product 1",
+                    "price": 5000,
+                    "supplier": "some-supplier",
+                    "category": "IT"
+                }
+
+        '400':
+          description: Bad information provided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: some error
+
+    delete:
+      summary: "Delete a product"
+      parameters:
+      - name: "product_id"
+        schema:
+          type: integer
+        in: "path"
+        required: true
+
+      responses:
+        200:
+          description: "Product was deleted"
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Return the item updated
+                example: {
+                  "id": 1,
+                  "name": "Product 1",
+                  "price": 5000,
+                  "supplier": "some-supplier",
+                  "category": "IT"
+                }
+
+        400:
+          description: "An error occurred"
