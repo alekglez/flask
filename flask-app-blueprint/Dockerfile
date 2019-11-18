@@ -14,4 +14,6 @@ RUN apk update && \
 RUN git clone --branch develop https://github.com/alekglez/flask.git /flask-app
 RUN pip install -r /flask-app/flask-app-blueprint/requirements/base.txt
 ENTRYPOINT ["/flask-app/flask-app-blueprint/entrypoint.sh"]
+ENTRYPOINT ["/flask-app-blueprint/entrypoint.sh"]
+ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 5000
