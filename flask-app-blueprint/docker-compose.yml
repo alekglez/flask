@@ -46,7 +46,7 @@ services:
       - ./docker/volumes/db:/var/lib/postgresql/data
 
     ports:
-      - 5435:5432
+      - 5432:5432
 
     networks:
       - flask_app_network
