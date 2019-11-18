@@ -17,5 +17,5 @@ CMD chmod +x flask-app/flask-app-blueprint/entrypoint.sh
 #COPY ~/flask-app/flask-app-blueprint/entrypoint.sh /usr/local/bin/
 #RUN ln -s /usr/local/bin/entrypoint.sh
 
-ENTRYPOINT ["flask-app/flask-app-blueprint/entrypoint.sh"]
+#ENTRYPOINT ["flask-app/flask-app-blueprint/entrypoint.sh"]
 EXPOSE 5000
