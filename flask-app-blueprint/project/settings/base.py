@@ -15,8 +15,8 @@ JWT_ISSUER = 'flask-app-blueprint'
 JWT_ALGORITHM = 'HS256'  # HS256, RS256
 
 # Database
-POSTGRES_HOST = os.environ.get('POSTGRES_HOST', 'localhost')
-POSTGRES_PORT = os.environ.get('POSTGRES_PORT', 5432)
+POSTGRES_HOST = os.environ.get('POSTGRES_HOST', 'postgres')
+POSTGRES_PORT = os.environ.get('POSTGRES_PORT', 5435)
 
 POSTGRES_DB = os.environ.get('POSTGRES_DB', 'flask_project')
 POSTGRES_DB_TEST = os.environ.get('POSTGRES_DB_TEST', 'flask_project_test')
