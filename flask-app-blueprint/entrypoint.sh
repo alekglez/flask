@@ -11,5 +11,5 @@ then
     echo "PostgreSQL started"
 fi
 
-python /home/flask-app/flask-app-blueprint/manage.py init_db
+#python /home/flask-app/flask-app-blueprint/manage.py init_db
 exec "$@"
