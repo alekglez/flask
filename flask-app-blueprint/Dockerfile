@@ -20,8 +20,8 @@ WORKDIR $APP_PATH
 
 RUN git clone --branch develop https://github.com/alekglez/flask.git $APP_PATH
 RUN pip install -r $APP_PATH/flask-app-blueprint/requirements/base.txt
-CMD chmod +x $APP_PATH/flask-app-blueprint/entrypoint.sh
+#CMD chmod +x $APP_PATH/flask-app-blueprint/entrypoint.sh
 
 USER flask
-ENTRYPOINT ["/home/flask-app/flask-app-blueprint/entrypoint.sh"]
+#ENTRYPOINT ["/home/flask-app/flask-app-blueprint/entrypoint.sh"]
 EXPOSE 5000
