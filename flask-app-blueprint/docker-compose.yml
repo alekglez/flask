@@ -19,7 +19,7 @@ services:
 
     environment:
       - FLASK_APP=/home/flask-app/flask-app-blueprint/manage.py
-      - POSTGRES_HOST=35.239.208.59
+      - POSTGRES_HOST=postgres
       - POSTGRES_PORT=5432
 
     ports:
