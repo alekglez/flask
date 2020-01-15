@@ -24,8 +24,6 @@ POSTGRES_DB_TEST = os.environ.get('POSTGRES_DB_TEST', 'flask_project_test')
 POSTGRES_USER = os.environ.get('POSTGRES_USER', 'postgres')
 POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD', 'postgres')
 
-SQLALCHEMY_DATABASE_URI = 'postgresql://{}:{}@{}:{}/{}'.format(POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_PORT, POSTGRES_DB)
-SQLALCHEMY_DATABASE_TEST_URI = 'postgresql://{}:{}@{}:{}/{}'.format(POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_PORT, POSTGRES_DB_TEST)
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 # And after that...
@@ -35,3 +33,11 @@ try:
     from .local import *
 except ImportError:
     pass
+
+SQLALCHEMY_DATABASE_URI = 'postgresql://{}:{}@{}:{}/{}'.format(
+    POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_PORT, POSTGRES_DB
+)
+
+SQLALCHEMY_DATABASE_TEST_URI = 'postgresql://{}:{}@{}:{}/{}'.format(
+    POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_PORT, POSTGRES_DB_TEST
+)
