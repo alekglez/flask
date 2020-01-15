@@ -1,0 +1,22 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t alekcoraglez/flask-app-blueprint-test .
+
+
+script:
+  - docker run alekcoraglez/flask-app-blueprint-test python manage.py test
+
+after_success:
+  - docker build -t alekcoraglez/flask-app .
+  - docker build -t alekcoraglez/flask-app-nginx ./nginx
+
+  # Login into Docker CLI...
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  # Push images
+  - docker push alekcoraglez/flask-app
+  - docker push alekcoraglez/flask-app-nginx
