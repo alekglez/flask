@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if ["$DATABASE" = "postgres"]
+if [ "$DATABASE" = "postgres" ]
 then
     echo "Waiting for postgres..."
 
@@ -11,5 +11,5 @@ then
     echo "PostgreSQL started"
 fi
 
-#python /home/flask-app/flask-app-blueprint/manage.py init_db
+python /flask-app/manage.py init_db
 exec "$@"
