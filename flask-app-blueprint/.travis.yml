@@ -1,13 +1,12 @@
-sudo: required
-
 language: python
+
+sudo: required
 
 services:
   - docker
 
 before_install:
   - docker build -t alekcoraglez/flask-app-blueprint-test .
-
 
 script:
   - docker run alekcoraglez/flask-app-blueprint-test python manage.py test
@@ -22,5 +21,3 @@ after_success:
   # Push images
   - docker push alekcoraglez/flask-app
   - docker push alekcoraglez/flask-app-nginx
-
-
