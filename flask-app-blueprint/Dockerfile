@@ -14,6 +14,7 @@ CMD chmod +x $APP_PATH/entrypoint.sh
 ENTRYPOINT ["./entrypoint.sh"]
 EXPOSE 5000
 
+
 #FROM python:3.7-alpine
 #LABEL maintainer = "Alejandro Cora Gonzalez <alek.cora.glez@gmail.com>"
 #

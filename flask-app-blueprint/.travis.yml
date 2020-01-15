@@ -21,3 +21,4 @@ after_success:
   - docker push alekcoraglez/flask-app
   - docker push alekcoraglez/flask-app-nginx
 
+
