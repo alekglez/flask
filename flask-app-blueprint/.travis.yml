@@ -21,3 +21,19 @@ after_success:
   # Push images
   - docker push alekcoraglez/flask-app
   - docker push alekcoraglez/flask-app-nginx
+
+deploy:
+  app: flask-app
+  env: FlaskApp-env
+  provider: elasticbeanstalk
+  region: us-west-1
+
+  bucket_name: elasticbeanstalk-us-east-1-241862480583
+  bucket_path: flask-application
+
+  on:
+    branch: develop
+
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
