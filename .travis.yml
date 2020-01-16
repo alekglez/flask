@@ -30,7 +30,7 @@ deploy:
   region: us-west-1
   edge: true
 
-  bucket_name: elasticbeanstalk-us-east-1-241862480583
+  bucket: elasticbeanstalk-us-east-1-241862480583
 
   on:
     branch: develop
