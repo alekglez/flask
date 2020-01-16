@@ -6,14 +6,14 @@ services:
   - docker
 
 before_install:
-  - docker build -t alekcoraglez/flask-app-blueprint-test .
+  - docker build -t alekcoraglez/flask-app-blueprint-test ./flask-app-blueprint/flask-app-blueprint
 
 script:
   - docker run alekcoraglez/flask-app-blueprint-test python manage.py test
 
 after_success:
-  - docker build -t alekcoraglez/flask-app .
-  - docker build -t alekcoraglez/flask-app-nginx ./nginx
+  - docker build -t alekcoraglez/flask-app ./flask-app-blueprint/flask-app-blueprint
+  - docker build -t alekcoraglez/flask-app-nginx ./flask-app-blueprint/flask-app-blueprint/nginx
 
   # Login into Docker CLI...
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
@@ -23,17 +23,16 @@ after_success:
   - docker push alekcoraglez/flask-app-nginx
 
 deploy:
-  app: flask-app
-  env: FlaskApp-env
+  app: multi-docker
+  env: MultiDocker-env
   provider: elasticbeanstalk
   region: us-west-1
+  edge: true
 
   bucket_name: elasticbeanstalk-us-east-1-241862480583
-  bucket_path: flask-application
 
   on:
     branch: develop
 
   access_key_id: $AWS_ACCESS_KEY
-  secret_access_key:
-    secure: $AWS_SECRET_KEY
+  secret_access_key: $AWS_SECRET_KEY

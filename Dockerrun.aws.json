@@ -5,7 +5,13 @@
       "name": "flask-app",
       "image": "alekcoraglez/flask-app",
       "hostname": "flask-app",
-      "essential": true
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 5000,
+          "containerPort": 5000
+        }
+      ]
     },
     {
       "name": "nginx",
@@ -17,7 +23,8 @@
           "hostPort": 8081,
           "containerPort": 8081
         }
-      ]
+      ],
+      "links": ["flask-app"]
     }
   ]
 }
