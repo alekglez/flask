@@ -4,6 +4,8 @@
     {
       "name": "flask-app",
       "image": "alekcoraglez/flask-app",
+      "memoryReservation": 512,
+      "cpu": 1,
       "hostname": "flask-app",
       "essential": true,
       "portMappings": [
@@ -16,12 +18,14 @@
     {
       "name": "nginx",
       "image": "alekcoraglez/flask-app-nginx",
+      "memoryReservation": 256,
+      "cpu": 1,
       "hostname": "nginx",
       "essential": true,
       "portMappings": [
         {
-          "hostPort": 8081,
-          "containerPort": 8081
+          "hostPort": 80,
+          "containerPort": 80
         }
       ],
       "links": ["flask-app"]
