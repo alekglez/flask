@@ -30,7 +30,7 @@ deploy:
   region: us-west-1
   edge: true
 
-  bucket: elasticbeanstalk-us-east-1-241862480583
+  bucket: elasticbeanstalk-us-east-1-241862480583.s3.amazonaws.com
 
   on:
     branch: develop
