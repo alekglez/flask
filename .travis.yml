@@ -6,14 +6,15 @@ services:
   - docker
 
 before_install:
-  - docker build -t alekcoraglez/flask-app-blueprint-test ./flask-app-blueprint/flask-app-blueprint
+  - pwd
+  - docker build -t alekcoraglez/flask-app-blueprint-test ./flask-app-blueprint
 
 script:
   - docker run alekcoraglez/flask-app-blueprint-test python manage.py test
 
 after_success:
-  - docker build -t alekcoraglez/flask-app ./flask-app-blueprint/flask-app-blueprint
-  - docker build -t alekcoraglez/flask-app-nginx ./flask-app-blueprint/flask-app-blueprint/nginx
+  - docker build -t alekcoraglez/flask-app ./flask-app-blueprint
+  - docker build -t alekcoraglez/flask-app-nginx ./flask-app-blueprint/nginx
 
   # Login into Docker CLI...
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
