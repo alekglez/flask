@@ -27,7 +27,7 @@ deploy:
   app: multi-docker
   env: MultiDocker-env
   provider: elasticbeanstalk
-  region: us-west-1
+  region: us-east-1
   edge: true
 
   bucket: elasticbeanstalk-us-east-1-241862480583.s3.amazonaws.com
