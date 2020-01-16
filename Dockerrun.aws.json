@@ -4,6 +4,7 @@
     {
       "name": "flask-app",
       "image": "alekcoraglez/flask-app",
+      "MemoryReservation": 500,
       "hostname": "flask-app",
       "essential": true,
       "portMappings": [
